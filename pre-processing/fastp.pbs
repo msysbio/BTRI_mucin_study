@@ -1,10 +1,5 @@
 #!/bin/bash
 
-#PBS -l nodes=1:ppn=18 
-#PBS -l walltime=24:00:00
-#PBS -l pmem=10gb
-#PBS -A lfaust_group
-
 export PATH="${VSC_DATA}/miniconda3/bin:${PATH}"
 source activate RNA
 
