@@ -1,0 +1,11 @@
+#!/bin/bash
+
+for fn in /staging/leuven/stg_00106/RNA-seq_Bin_Daniel/reads/220620_220620_RNA_seq_for_model_gut_bacteria/out/qc_filtered/GC124{724..738};
+do
+samp=`basename ${fn}`
+echo "Processing sample ${samp}"
+/staging/leuven/stg_00106/RNA-seq_Bin_Daniel/Tools/salmon-1.9.0_linux_x86_64/bin/salmon quant -l ISR -i /staging/leuven/stg_00106/RNA-seq_Bin_Daniel/salmon_files/Salmon_Bin/Bacteroides_thetaiotaomicron/Bacteroides_thetaiotaomicron_index \
+         -1 "${fn}_qc.R1.fastq.gz" \
+         -2 "${fn}_qc.R2.fastq.gz"\
+         -p 8 -o /staging/leuven/stg_00106/RNA-seq_Bin_Daniel/salmon_files/Salmon_Bin/Bacteroides_thetaiotaomicron/BTRI_batch_mucin/${samp}_salmon_out
+done

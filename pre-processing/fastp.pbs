@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#PBS -l nodes=1:ppn=18 
+#PBS -l walltime=24:00:00
+#PBS -l pmem=10gb
+#PBS -A lfaust_group
+
+export PATH="${VSC_DATA}/miniconda3/bin:${PATH}"
+source activate RNA
+
+cd /staging/leuven/stg_00106/RNA-seq_Bin_Daniel/reads/220620_220620_RNA_seq_for_model_gut_bacteria/out
+
+while IFS= read -r id; do
+	fastp -i "${id}.R1.fastq.gz" -I "${id}.R2.fastq.gz" -o qc_filtered/"${id}_qc.R1.fastq.gz" -O qc_filtered/"${id}_qc.R2.fastq.gz"  -j qc_filtered/"${id}_qc_fastp.json" -h qc_filtered/"${id}_qc_fastp.html"
+done < ./ID
+
+
