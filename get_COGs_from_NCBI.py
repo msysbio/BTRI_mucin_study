@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Nov 24 15:21:06 2022
-
+This script downloads the KEGG and COGG annotation for BT via API. For RI, the annotation has been compiled from EGGNOGG database.
 @author: u0145079
 """
-###########################################
-######Downloading COG annotation###########
-###########################################
+####################################################
+######Downloading COG and KEGG annotation###########
+####################################################
 
 import requests
 import json
@@ -16,7 +16,7 @@ import itertools
 import os
 import numpy as np
 
-###########################Bacteroides_thetaiotaomicron
+#Bacteroides_thetaiotaomicron
 
 #URL for the API:ie. https://www.ncbi.nlm.nih.gov/research/cog/api/cog/?organism=Nitrosopumilus_maritimus_SCM1
 #NCBI-COG database
@@ -123,7 +123,7 @@ for i in range(len(bt_annot["gene_id"])):
 bt_annot.to_csv('/Users/u0145079/Desktop/Miscellanious/Bin/Bacteroides_thetaiotaomicron/Bacteroides_thetaiotaomicron/Bacteroides_thetaiotaomicron_annotation.csv')
 
 
-###########################Roseburia_intestinalis
+#Roseburia_intestinalis
 #concatenate files from the same batch
 
 folder = '/Users/u0145079/Desktop/Miscellanious/Bin/Roseburia_Intestalis/Roseburia_intestinalis/BTRI_batch_mucin'
@@ -150,7 +150,7 @@ split_df.index = data.keys()
 split_df["original_tags"] = split_df.index
 split_df.index = split_df.index.to_series().str.split('|').str[2]
 
-##
+##Upload PATRIC ffn file:
 folder = '/Users/u0145079/Desktop/Miscellanious/Bin/Roseburia_Intestalis/Roseburia_intestinalis/536231.75.PATRIC.ffn'
 
 tags = list()
